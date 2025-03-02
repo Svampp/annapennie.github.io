@@ -1,3 +1,4 @@
+/* Общие стили */
 body {
     font-family: 'Arial', sans-serif;
     background-color: #1e1e1e;
@@ -35,6 +36,11 @@ nav ul li a {
 
 nav ul li a:hover {
     color: #fff;
+}
+
+nav ul li a.active {
+    color: #fff;
+    border-bottom: 2px solid #ffcc00;
 }
 
 main {
