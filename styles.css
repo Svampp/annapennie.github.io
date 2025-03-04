@@ -28,7 +28,7 @@ body {
 header {
     background-color: rgba(51, 51, 51, 0.2); /* Полупрозрачный фон */
     padding: 10px 0;
- 
+    border-bottom: none; /* Убираем линию */
 }
 
 nav ul {
@@ -73,7 +73,9 @@ main {
 section {
     margin-bottom: 40px;
     padding: 20px;
+    background-color: rgba(42, 42, 42, 0.2); /* Более прозрачный фон */
     border-radius: 8px;
+    box-shadow: none; /* Убираем тени */
     max-width: 50%; /* Ограничиваем ширину */
     margin-left: 0; /* Выравниваем по левому краю */
 }
