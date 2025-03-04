@@ -73,9 +73,7 @@ main {
 section {
     margin-bottom: 40px;
     padding: 20px;
-    background-color: rgba(42, 42, 42, 0.2); /* Более прозрачный фон */
     border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
     max-width: 50%; /* Ограничиваем ширину */
     margin-left: 0; /* Выравниваем по левому краю */
 }
