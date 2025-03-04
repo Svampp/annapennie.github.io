@@ -12,7 +12,23 @@ body {
     min-height: 100vh; /* Чтобы футер был внизу */
     display: flex;
     flex-direction: column;
+    scrollbar-width: thin; /* Тонкая полоса прокрутки */
+    scrollbar-color: #B8860B transparent; /* Цвет полосы и фона */
 }
+
+    /* Стилизация полосы прокрутки для WebKit (Chrome, Safari) */
+    body::-webkit-scrollbar {
+        width: 8px; /* Ширина полосы прокрутки */
+    }
+
+    body::-webkit-scrollbar-track {
+        background: transparent; /* Прозрачный фон трека */
+    }
+
+    body::-webkit-scrollbar-thumb {
+        background: linear-gradient( to bottom, transparent 10%, #B8860B 50%, transparent 90% ); /* Градиентная полоса */
+        border-radius: 4px; /* Скругление углов */
+    }
 
     body::before {
         content: '';
@@ -77,6 +93,7 @@ section {
     box-shadow: none; /* Убираем тени */
     max-width: 50%; /* Ограничиваем ширину */
     margin-left: 0; /* Выравниваем по левому краю */
+    background-color: rgba(42, 42, 42, 0.2); /* Полупрозрачный фон */
 }
 
     section p {
@@ -88,10 +105,23 @@ section {
 h2 {
     color: #B8860B; /* Цвет заголовка */
     border-bottom: none; /* Убираем полосу */
-    text-align: center; /* Выравниваем по центру */
-    padding-bottom: 10px;
-    cursor: pointer; /* Курсор в виде указателя */
+    text-align: left; /* Выравниваем по левому краю */
+    padding-left: 20px; /* Отступ слева */
 }
+
+.skill-header {
+    background-color: rgba(42, 42, 42, 0.2); /* Полупрозрачный фон для заголовков */
+    padding: 10px 20px; /* Отступы внутри заголовка */
+    border-radius: 8px; /* Скругление углов */
+    margin-bottom: 10px; /* Отступ между заголовками */
+    cursor: pointer; /* Курсор в виде указателя */
+    transition: background-color 0.3s ease, box-shadow 0.3s ease; /* Плавное изменение фона и тени */
+}
+
+    .skill-header:hover {
+        background-color: rgba(66, 66, 66, 0.4); /* Подсветка при наведении */
+        box-shadow: 0 0 10px rgba(184, 134, 11, 0.5); /* Подсветка по краям */
+    }
 
 .skill-content {
     display: none; /* По умолчанию скрываем контент */
