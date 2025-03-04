@@ -28,12 +28,7 @@ body {
 header {
     background-color: rgba(51, 51, 51, 0.2); /* Полупрозрачный фон */
     padding: 10px 0;
-    border-bottom: 2px solid transparent; /* Убираем стандартную полосу */
-    background-image: linear-gradient( to right, transparent 20%, #b8860b 50%, /* Темно-золотой цвет */
-    transparent 80% );
-    background-size: 100% 2px; /* Высота полосы */
-    background-position: bottom;
-    background-repeat: no-repeat;
+    border-bottom: none; /* Убираем линию */
 }
 
 nav ul {
@@ -49,7 +44,7 @@ nav ul {
     }
 
         nav ul li a {
-            color: #fff; /* Белый текст */
+            color: rgba(255, 255, 255, 0.5); /* Серый текст (полупрозрачный белый) */
             text-decoration: none;
             font-weight: bold;
             font-size: 18px;
@@ -58,9 +53,12 @@ nav ul {
         }
 
             nav ul li a.active {
+                color: #fff; /* Белый текст для активной кнопки */
                 border-bottom: 2px solid transparent; /* Убираем стандартную полосу */
-                background-image: linear-gradient( to right, transparent 20%, #b8860b 50%, /* Темно-золотой цвет */
-                transparent 80% );
+                background-image: linear-gradient( to right, transparent 10%, /* Уменьшаем прозрачную область */
+                #b8860b 50%, /* Темно-золотой цвет */
+                transparent 90% /* Уменьшаем прозрачную область */
+                );
                 background-size: 100% 2px; /* Высота полосы */
                 background-position: bottom;
                 background-repeat: no-repeat;
