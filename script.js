@@ -21,6 +21,13 @@ function showSection(sectionId) {
     if (activeLink) {
         activeLink.classList.add('active');
     }
+
+    // Если активен раздел Skills, скрываем весь контент по умолчанию
+    if (sectionId === 'skills') {
+        document.querySelectorAll('.skill-content').forEach(content => {
+            content.classList.remove('active');
+        });
+    }
 }
 
 // Обработчик кликов по кнопкам навигации
@@ -29,6 +36,14 @@ document.querySelectorAll('nav ul li a').forEach(link => {
         e.preventDefault(); // Отменяем стандартное поведение ссылки
         const sectionId = this.getAttribute('data-section'); // Получаем ID раздела
         showSection(sectionId); // Показываем выбранный раздел
+    });
+});
+
+// Обработчик кликов по заголовкам в Skills
+document.querySelectorAll('.skill-header').forEach(header => {
+    header.addEventListener('click', function () {
+        const content = this.nextElementSibling; // Находим следующий элемент (контент)
+        content.classList.toggle('active'); // Переключаем видимость контента
     });
 });
 
