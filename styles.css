@@ -97,16 +97,3 @@ h2 {
     background-repeat: no-repeat;
     padding-bottom: 10px;
 }
-
-footer {
-    text-align: center;
-    padding: 10px;
-    background-color: rgba(51, 51, 51, 0.2); /* Полупрозрачный фон */
-    border-top: 2px solid transparent; /* Убираем стандартную полосу */
-    background-image: linear-gradient( to right, transparent 20%, #b8860b 50%, /* Темно-золотой цвет */
-    transparent 80% );
-    background-size: 100% 2px; /* Высота полосы */
-    background-position: top;
-    background-repeat: no-repeat;
-    margin-top: auto; /* Футер внизу */
-}
