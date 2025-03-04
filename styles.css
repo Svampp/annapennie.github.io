@@ -5,7 +5,7 @@ body {
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    color: #B8860B; /* Белый текст */
+    color: #B8860B; /* Цвет текста по умолчанию */
     margin: 0;
     padding: 0;
     line-height: 1.6;
@@ -44,7 +44,7 @@ nav ul {
     }
 
         nav ul li a {
-            color: rgba(184, 134, 11 0.5); /* Серый текст (полупрозрачный белый) */
+            color: rgba(184, 134, 11, 0.5); /* Серый текст (полупрозрачный золотой) */
             text-decoration: none;
             font-weight: bold;
             font-size: 18px;
@@ -53,10 +53,10 @@ nav ul {
         }
 
             nav ul li a.active {
-                color: #B8860B; /* Белый текст для активной кнопки */
+                color: #B8860B; /* Золотой текст для активной кнопки */
                 border-bottom: 2px solid transparent; /* Убираем стандартную полосу */
                 background-image: linear-gradient( to right, transparent 10%, /* Уменьшаем прозрачную область */
-                #b8860b 50%, /* Темно-золотой цвет */
+                #B8860B 50%, /* Золотой цвет */
                 transparent 90% /* Уменьшаем прозрачную область */
                 );
                 background-size: 100% 2px; /* Высота полосы */
@@ -73,7 +73,6 @@ main {
 section {
     margin-bottom: 40px;
     padding: 20px;
-    background-color: rgba(42, 42, 42, 0.2); /* Более прозрачный фон */
     border-radius: 8px;
     box-shadow: none; /* Убираем тени */
     max-width: 50%; /* Ограничиваем ширину */
@@ -83,17 +82,12 @@ section {
     section p {
         font-size: 25px; /* Увеличиваем размер текста */
         margin: 10px 0; /* Добавляем отступы между абзацами */
+        color: #F5DEB3; /* Цвет текста */
     }
 
 h2 {
-    color: #B8860B; /* Белый цвет текста */
-    border-bottom: 2px solid transparent; /* Убираем стандартную полосу */
-    background-image: linear-gradient( to right, transparent 10%, /* Уменьшаем прозрачную область */
-    #b8860b 50%, /* Темно-золотой цвет */
-    transparent 90% /* Уменьшаем прозрачную область */
-    );
-    background-size: 100% 2px; /* Высота полосы */
-    background-position: bottom;
-    background-repeat: no-repeat;
+    color: #B8860B; /* Цвет заголовка */
+    border-bottom: none; /* Убираем полосу */
+    text-align: center; /* Выравниваем по центру */
     padding-bottom: 10px;
 }
