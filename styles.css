@@ -58,7 +58,13 @@ nav ul {
         }
 
             nav ul li a.active {
-                border-bottom: 2px solid #b8860b; /* Темно-золотое подчеркивание для активной кнопки */
+                border-bottom: 2px solid transparent; /* Убираем стандартную полосу */
+                background-image: linear-gradient( to right, transparent 20%, #b8860b 50%, /* Темно-золотой цвет */
+                transparent 80% );
+                background-size: 100% 2px; /* Высота полосы */
+                background-position: bottom;
+                background-repeat: no-repeat;
+                padding-bottom: 5px; /* Отступ для подчеркивания */
             }
 
 main {
@@ -76,11 +82,18 @@ section {
     margin-left: 0; /* Выравниваем по левому краю */
 }
 
+    section p {
+        font-size: 18px; /* Увеличиваем размер текста */
+        margin: 10px 0; /* Добавляем отступы между абзацами */
+    }
+
 h2 {
     color: #fff; /* Белый цвет текста */
     border-bottom: 2px solid transparent; /* Убираем стандартную полосу */
-    background-image: linear-gradient( to right, transparent 20%, #b8860b 50%, /* Темно-золотой цвет */
-    transparent 80% );
+    background-image: linear-gradient( to right, transparent 10%, /* Уменьшаем прозрачную область */
+    #b8860b 50%, /* Темно-золотой цвет */
+    transparent 90% /* Уменьшаем прозрачную область */
+    );
     background-size: 100% 2px; /* Высота полосы */
     background-position: bottom;
     background-repeat: no-repeat;
