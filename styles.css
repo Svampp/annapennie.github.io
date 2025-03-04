@@ -26,7 +26,7 @@ body {
     }
 
 header {
-    background-color: rgba(10, 10, 10, 0.8); /* Полупрозрачный фон */
+    background-color: rgba(51, 51, 51, 0.2); /* Полупрозрачный фон */
     padding: 10px 0;
     border-bottom: 2px solid #ffcc00;
 }
@@ -64,7 +64,7 @@ main {
 section {
     margin-bottom: 40px;
     padding: 20px;
-    background-color: rgba(42, 42, 42, 0.6); /* Более прозрачный фон */
+    background-color: rgba(42, 42, 42, 0.2); /* Более прозрачный фон */
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
@@ -78,7 +78,7 @@ h2 {
 footer {
     text-align: center;
     padding: 10px;
-    background-color: rgba(51, 51, 51, 0.8); /* Полупрозрачный фон */
+    background-color: rgba(51, 51, 51, 0.2); /* Полупрозрачный фон */
     border-top: 2px solid #ffcc00;
     margin-top: auto; /* Футер внизу */
 }
