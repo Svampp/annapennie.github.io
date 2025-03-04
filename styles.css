@@ -5,7 +5,7 @@ body {
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    color: #FFD700; /* Белый текст */
+    color: #B8860B; /* Белый текст */
     margin: 0;
     padding: 0;
     line-height: 1.6;
@@ -44,7 +44,7 @@ nav ul {
     }
 
         nav ul li a {
-            color: rgba(255, 255, 255, 0.5); /* Серый текст (полупрозрачный белый) */
+            color: rgba(184, 134, 11 0.5); /* Серый текст (полупрозрачный белый) */
             text-decoration: none;
             font-weight: bold;
             font-size: 18px;
@@ -53,7 +53,7 @@ nav ul {
         }
 
             nav ul li a.active {
-                color: #fff; /* Белый текст для активной кнопки */
+                color: #B8860B; /* Белый текст для активной кнопки */
                 border-bottom: 2px solid transparent; /* Убираем стандартную полосу */
                 background-image: linear-gradient( to right, transparent 10%, /* Уменьшаем прозрачную область */
                 #b8860b 50%, /* Темно-золотой цвет */
@@ -86,7 +86,7 @@ section {
     }
 
 h2 {
-    color: #FFD700; /* Белый цвет текста */
+    color: #B8860B; /* Белый цвет текста */
     border-bottom: 2px solid transparent; /* Убираем стандартную полосу */
     background-image: linear-gradient( to right, transparent 10%, /* Уменьшаем прозрачную область */
     #b8860b 50%, /* Темно-золотой цвет */
