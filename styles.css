@@ -86,7 +86,7 @@ section {
     }
 
 h2 {
-    color: #fff; /* Белый цвет текста */
+    color: #FFD700; /* Белый цвет текста */
     border-bottom: 2px solid transparent; /* Убираем стандартную полосу */
     background-image: linear-gradient( to right, transparent 10%, /* Уменьшаем прозрачную область */
     #b8860b 50%, /* Темно-золотой цвет */
