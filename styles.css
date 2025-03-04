@@ -1,6 +1,6 @@
 /* Общие стили */
 body {
-    font-family: 'Big Shoulders Display', sans-serif; /* Новый шрифт */
+    font-family: 'Cinzel', sans-serif; /* Новый шрифт */
     background-image: url('background.jpg');
     background-size: cover;
     background-position: center;
@@ -26,7 +26,7 @@ body {
     }
 
 header {
-    background-color: rgba(51, 51, 51, 0.8); /* Полупрозрачный фон */
+    background-color: rgba(80, 80, 80, 0.8); /* Полупрозрачный фон */
     padding: 10px 0;
     border-bottom: 2px solid #ffcc00;
 }
