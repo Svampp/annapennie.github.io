@@ -1,6 +1,6 @@
 /* Общие стили */
 body {
-    font-family: 'Cinzel', sans-serif; /* Новый шрифт */
+    font-family: 'Cinzel', serif; /* Новый шрифт */
     background-image: url('background.jpg');
     background-size: cover;
     background-position: center;
