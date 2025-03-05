@@ -128,11 +128,11 @@
 
         // Загрузка 3D-модели в формате .fbx
         const loader = new FBXLoader();
-        loader.setPath('path/to/your/model/'); // Укажите путь к вашей модели и текстурам
+        loader.setPath('character.fbx'); // Укажите путь к вашей модели и текстурам
 
         // Добавляем TGALoader для поддержки .tga
         const tgaLoader = new TGALoader();
-        loader.setTexturePath('path/to/your/textures/'); // Укажите путь к текстурам
+        loader.setTexturePath('T_Monk_BaseColor.tga'); // Укажите путь к текстурам
         loader.setResourceLoader(tgaLoader);
 
         loader.load(
