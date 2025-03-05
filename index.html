@@ -29,6 +29,7 @@
         </nav>
     </header>
 
+
     <main>
         <section id="info" class="content-section">
             <h2>INFO</h2>
@@ -100,6 +101,7 @@
     <script type="module">
         import * as THREE from 'three';
         import { FBXLoader } from 'three/addons/loaders/FBXLoader.js';
+        import TGALoader from 'https://cdn.jsdelivr.net/npm/three@v0.174.0/examples/jsm/loaders/TGALoader.js';
 
         // Контейнер для 3D-модели
         const container = document.getElementById('3d-container');
@@ -126,8 +128,15 @@
 
         // Загрузка 3D-модели в формате .fbx
         const loader = new FBXLoader();
+        loader.setPath('path/to/your/model/'); // Укажите путь к вашей модели и текстурам
+
+        // Добавляем TGALoader для поддержки .tga
+        const tgaLoader = new TGALoader();
+        loader.setTexturePath('path/to/your/textures/'); // Укажите путь к текстурам
+        loader.setResourceLoader(tgaLoader);
+
         loader.load(
-            'character.fbx', // Относительный путь к вашей модели
+            'character.fbx', // Имя вашей модели
             function (fbx) {
                 const model = fbx;
                 scene.add(model); // Добавляем модель на сцену
