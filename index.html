@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="eng">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,12 +14,6 @@
           }
         }
     </script>
-
-    <script src="
-https://cdn.jsdelivr.net/npm/three-fbx-loader@1.0.3/index.min.js
-"></script>
-
-    <script src="script.js"></script>
 </head>
 <body>
     <header>
@@ -103,8 +97,10 @@ https://cdn.jsdelivr.net/npm/three-fbx-loader@1.0.3/index.min.js
     <!-- Контейнер для 3D-модели -->
     <div id="3d-container" style="position: fixed; top: 0; right: 0; width: 50%; height: 100vh;"></div>
 
-    <script src="script.js"></script>
-    <script>
+    <script type="module">
+        import * as THREE from 'three';
+        import { FBXLoader } from 'three/addons/loaders/FBXLoader.js';
+
         // Контейнер для 3D-модели
         const container = document.getElementById('3d-container');
 
@@ -129,7 +125,7 @@ https://cdn.jsdelivr.net/npm/three-fbx-loader@1.0.3/index.min.js
         scene.add(directionalLight);
 
         // Загрузка 3D-модели в формате .fbx
-        const loader = new THREE.FBXLoader();
+        const loader = new FBXLoader();
         loader.load(
             'character.fbx', // Относительный путь к вашей модели
             function (fbx) {
@@ -157,6 +153,60 @@ https://cdn.jsdelivr.net/npm/three-fbx-loader@1.0.3/index.min.js
             camera.aspect = width / height;
             camera.updateProjectionMatrix();
         });
+    </script>
+
+    <script>
+        // Функция для переключения разделов
+        function showSection(sectionId) {
+            // Скрываем все разделы
+            document.querySelectorAll('.content-section').forEach(section => {
+                section.style.display = 'none';
+            });
+
+            // Показываем выбранный раздел
+            const activeSection = document.getElementById(sectionId);
+            if (activeSection) {
+                activeSection.style.display = 'block';
+            }
+
+            // Убираем активный класс у всех кнопок
+            document.querySelectorAll('nav ul li a').forEach(link => {
+                link.classList.remove('active');
+            });
+
+            // Добавляем активный класс к выбранной кнопке
+            const activeLink = document.querySelector(`nav ul li a[data-section="${sectionId}"]`);
+            if (activeLink) {
+                activeLink.classList.add('active');
+            }
+
+            // Если активен раздел Skills, скрываем весь контент по умолчанию
+            if (sectionId === 'skills') {
+                document.querySelectorAll('.skill-content').forEach(content => {
+                    content.classList.remove('active');
+                });
+            }
+        }
+
+        // Обработчик кликов по кнопкам навигации
+        document.querySelectorAll('nav ul li a').forEach(link => {
+            link.addEventListener('click', function (e) {
+                e.preventDefault(); // Отменяем стандартное поведение ссылки
+                const sectionId = this.getAttribute('data-section'); // Получаем ID раздела
+                showSection(sectionId); // Показываем выбранный раздел
+            });
+        });
+
+        // Обработчик кликов по заголовкам в Skills
+        document.querySelectorAll('.skill-header').forEach(header => {
+            header.addEventListener('click', function () {
+                const content = this.nextElementSibling; // Находим следующий элемент (контент)
+                content.classList.toggle('active'); // Переключаем видимость контента
+            });
+        });
+
+        // По умолчанию показываем раздел INFO
+        showSection('info');
     </script>
 </body>
 </html>
