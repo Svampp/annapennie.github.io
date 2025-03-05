@@ -136,19 +136,19 @@ h2 {
     position: fixed;
     top: 0;
     right: 0;
-    width: 50%; /* Половина экрана */
-    height: 100vh; /* На всю высоту */
-    overflow: hidden; /* Скрываем выходящие за пределы части */
-    z-index: 1; /* Чтобы изображение было поверх других элементов */
+    width: 30%; /* Уменьшили ширину контейнера */
+    height: 100vh;
+    overflow: hidden;
+    z-index: 1;
     display: flex;
-    justify-content: center; /* Центрируем по горизонтали */
+    justify-content: center;
     align-items: center; /* Центрируем по вертикали */
 }
 
     #image-container img {
-        width: 50%; /* Ширина картинки */
-        height: auto; /* Автоматическая высота для сохранения пропорций */
-        object-fit: contain; /* Сохраняем пропорции */
-        max-width: 100%; /* Ограничиваем максимальную ширину */
-        max-height: 100%; /* Ограничиваем максимальную высоту */
+        width: 80%; /* Уменьшили ширину изображения */
+        height: auto;
+        object-fit: contain;
+        max-width: 100%;
+        max-height: 100%;
     }
