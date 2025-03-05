@@ -47,7 +47,5 @@ document.querySelectorAll('.skill-header').forEach(header => {
     });
 });
 
-import { TGALoader } from 'https://cdn.jsdelivr.net/npm/three@v0.174.0/examples/jsm/loaders/TGALoader.js';
-
 // По умолчанию показываем раздел INFO
 showSection('info');

@@ -131,12 +131,3 @@ h2 {
     .skill-content.active {
         display: block; /* Показываем контент при активации */
     }
-
-#3d-container {
-    position: fixed;
-    top: 0;
-    right: 0;
-    width: 50%; /* Половина экрана */
-    height: 100vh; /* На всю высоту */
-    z-index: 1; /* Чтобы модель была поверх других элементов */
-}
