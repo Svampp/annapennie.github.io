@@ -6,6 +6,8 @@
     <title>Anna Pennie</title>
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&family=Commissioner:wght@100..900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Prompt:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r146/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.146.0/examples/js/loaders/FBXLoader.js"></script>
 </head>
 <body>
     <header>
@@ -31,14 +33,14 @@
         </section>
 
         <section id="education" class="content-section" style="display: none;">
-            <h2>BUSINESS COLLEGE HELSINKI</h2>
+            <h2>Business College Helsinki</h2>
             <p>Field of study: Vocational qualification in Information and Communication Technology</p>
             <p>Specialization: Game Programming</p>
             <p>Duration: August 2023 - Present</p>
         </section>
 
         <section id="work" class="content-section" style="display: none;">
-            <h2>TECHNICAL SUPPORT INTERN, POWER OY</h2>
+            <h2>Technical Support Intern, Power Oy</h2>
             <p>March 2024 - May 2024</p>
             <p>Provided technical support to customers, resolving hardware and software-related issues</p>
             <p>Worked with internal company systems to process service requests.</p>
@@ -46,38 +48,25 @@
         </section>
 
         <section id="skills" class="content-section" style="display: none;">
-            <h2 class="skill-header">GAME DEVELOPMENT</h2>
+            <h2 class="skill-header">Game Development</h2>
             <div class="skill-content">
-                <p>Unity</p>
-                <p>Unreal Engine</p>
+                <p>Unity, Unreal Engine</p>
             </div>
-            <h2 class="skill-header">PROGRAMMING LANGUAGES</h2>
+            <h2 class="skill-header">Programming Languages</h2>
             <div class="skill-content">
-                <p>C++</p>
-                <p>C#</p>
-                <p>Python</p>
-                <p>HTML</p>
-                <p>CSS</p>
-                <p>SQL</p>
-                <p>.NET</p>
+                <p>C++, C#, Python, HTML, CSS, SQL, .NET</p>
             </div>
-            <h2 class="skill-header">GAME DESIGN & UI DEVELOPMENT</h2>
+            <h2 class="skill-header">Game Design & UI Development</h2>
             <div class="skill-content">
                 <p>Game Design & UI Development</p>
             </div>
-            <h2 class="skill-header">SOFTWARE & TOOLS</h2>
+            <h2 class="skill-header">Software & Tools</h2>
             <div class="skill-content">
-                <p>Windows</p>
-                <p>Microsoft Office</p>
-                <p>Adobe Xd</p>
-                <p>Figma</p>
-                <p>Blender</p>
+                <p>Windows, Microsoft Office, Adobe Xd, Figma, Blender</p>
             </div>
-            <h2 class="skill-header">LANGUAGES</h2>
+            <h2 class="skill-header">Languages</h2>
             <div class="skill-content">
-                <p>Russian (Native)</p>
-                <p>Finnish (Limited working proficiency)</p>
-                <p>English (Professional working proficiency)</p>
+                <p>Russian (Native), Finnish (Limited working proficiency), English (Professional working proficiency)</p>
             </div>
         </section>
 
@@ -99,6 +88,63 @@
         </section>
     </main>
 
+    <!-- Контейнер для 3D-модели -->
+    <div id="3d-container" style="position: fixed; top: 0; right: 0; width: 50%; height: 100vh;"></div>
+
     <script src="script.js"></script>
+    <script>
+        // Контейнер для 3D-модели
+        const container = document.getElementById('3d-container');
+
+        // Сцена
+        const scene = new THREE.Scene();
+
+        // Камера
+        const camera = new THREE.PerspectiveCamera(75, container.clientWidth / container.clientHeight, 0.1, 1000);
+        camera.position.set(0, 0, 5); // Позиция камеры
+
+        // Рендерер
+        const renderer = new THREE.WebGLRenderer({ antialias: true });
+        renderer.setSize(container.clientWidth, container.clientHeight);
+        container.appendChild(renderer.domElement);
+
+        // Освещение
+        const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
+        scene.add(ambientLight);
+
+        const directionalLight = new THREE.DirectionalLight(0xffffff, 0.5);
+        directionalLight.position.set(1, 1, 1);
+        scene.add(directionalLight);
+
+        // Загрузка 3D-модели в формате .fbx
+        const loader = new THREE.FBXLoader();
+        loader.load(
+            'character.fbx', // Относительный путь к вашей модели
+            function (fbx) {
+                const model = fbx;
+                scene.add(model); // Добавляем модель на сцену
+            },
+            undefined,
+            function (error) {
+                console.error('Ошибка загрузки модели:', error);
+            }
+        );
+
+        // Анимация
+        function animate() {
+            requestAnimationFrame(animate);
+            renderer.render(scene, camera);
+        }
+        animate();
+
+        // Обработка изменения размера окна
+        window.addEventListener('resize', () => {
+            const width = container.clientWidth;
+            const height = container.clientHeight;
+            renderer.setSize(width, height);
+            camera.aspect = width / height;
+            camera.updateProjectionMatrix();
+        });
+    </script>
 </body>
 </html>
