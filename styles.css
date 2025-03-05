@@ -146,10 +146,12 @@ h2 {
 }
 
     #image-container img {
-        width: 80%; /* Увеличиваем ширину изображения внутри контейнера */
+        width: 80%; /* Ширина изображения */
         height: auto; /* Сохраняем пропорции */
         object-fit: contain;
         max-width: 100%;
         max-height: 100%;
+        filter: brightness(70%); /* Затемняем картинку до 70% яркости */
     }
+
 
