@@ -105,6 +105,20 @@
     </div>
 
     <script src="script.js"></script>
-   
+    <!-- SVG-фильтр для эффекта дыма -->
+    <svg xmlns="http://www.w3.org/2000/svg" version="1.1" class="svg-filters">
+        <defs>
+            <filter id="smoke-filter">
+                <feTurbulence type="fractalNoise" baseFrequency="0.01" numOctaves="1" result="turbulence" />
+                <feDisplacementMap in="SourceGraphic" in2="turbulence" scale="50" xChannelSelector="R" yChannelSelector="G" />
+                <feGaussianBlur stdDeviation="10" />
+            </filter>
+        </defs>
+    </svg>
+
+    <!-- Контейнер для дыма -->
+    <div class="smoke-container">
+        <div class="smoke"></div>
+    </div>
 </body>
 </html>
