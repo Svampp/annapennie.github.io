@@ -10,7 +10,8 @@ function showSection(sectionId) {
     }
 
     document.querySelectorAll('nav ul li a').forEach(link => {
-        link.classList.remove('active');
+        link.removeEventListener('click', handleLinkClick);
+        link.addEventListener('click', handleLinkClick);
     });
 
     const activeLink = document.querySelector(`nav ul li a[data-section="${sectionId}"]`);
@@ -125,6 +126,12 @@ function draw(startT, totalT) {
 
         if (td > 0) {
             if (td <= p.life) { stillAlive = true; }
+            else {
+                pCollection.splice(i, 1);
+                pCount--;
+                i--; 
+                continue; 
+            }
 
            
             var newTop = p.top - (p.speedUp * (td / 1000));
