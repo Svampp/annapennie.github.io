@@ -180,35 +180,47 @@ a {
         color: #F5DEB3; /* Более светлый оттенок при наведении (например, #F5DEB3) */
     }
 
-/* Стили для эффекта тумана */
+/* Стили для эффекта клубов дыма */
+body::before,
 body::after {
     content: '';
     position: fixed;
     bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 150px; /* Высота области тумана */
-    background: linear-gradient( to top, rgba(0, 0, 0, 0.8) 0%, /* Начало тумана (более плотный) */
-    rgba(0, 0, 0, 0.5) 50%, /* Средняя часть (менее плотный) */
-    rgba(0, 0, 0, 0) 100% /* Конец тумана (полностью прозрачный) */
+    right: 0;
+    width: 200px; /* Ширина клуба дыма */
+    height: 150px; /* Высота клуба дыма */
+    background: radial-gradient( circle, rgba(255, 255, 255, 0.3) 10%, /* Прозрачный центр */
+    rgba(255, 255, 255, 0.1) 50%, /* Полупрозрачный край */
+    rgba(255, 255, 255, 0) 100% /* Полностью прозрачный */
     );
-    pointer-events: none; /* Чтобы туман не блокировал клики */
-    z-index: 10; /* Убедитесь, что туман поверх других элементов */
-    animation: fogAnimation 5s infinite ease-in-out; /* Анимация тумана */
+    filter: blur(20px); /* Размытие для эффекта дыма */
+    pointer-events: none; /* Чтобы дым не блокировал клики */
+    z-index: 10; /* Убедитесь, что дым поверх других элементов */
+    animation: smokeAnimation 10s infinite ease-in-out; /* Анимация дыма */
 }
 
-/* Ключевые кадры для анимации тумана */
-@keyframes fogAnimation {
+/* Второй клуб дыма */
+body::after {
+    width: 250px;
+    height: 180px;
+    animation-delay: 5s; /* Задержка для второго клуба */
+}
+
+/* Ключевые кадры для анимации дыма */
+@keyframes smokeAnimation {
     0% {
-        opacity: 0.8; /* Начальная прозрачность */
+        transform: translateX(0) translateY(0) scale(1);
+        opacity: 0.8;
     }
 
     50% {
-        opacity: 0.6; /* Средняя прозрачность */
+        transform: translateX(-100px) translateY(-20px) scale(1.2);
+        opacity: 0.6;
     }
 
     100% {
-        opacity: 0.8; /* Возврат к начальной прозрачности */
+        transform: translateX(-200px) translateY(0) scale(1);
+        opacity: 0.8;
     }
 }
 
