@@ -1,28 +1,23 @@
-// Функция для переключения разделов
 function showSection(sectionId) {
-    // Скрываем все разделы
+    
     document.querySelectorAll('.content-section').forEach(section => {
         section.style.display = 'none';
     });
 
-    // Показываем выбранный раздел
     const activeSection = document.getElementById(sectionId);
     if (activeSection) {
         activeSection.style.display = 'block';
     }
 
-    // Убираем активный класс у всех кнопок
     document.querySelectorAll('nav ul li a').forEach(link => {
         link.classList.remove('active');
     });
 
-    // Добавляем активный класс к выбранной кнопке
     const activeLink = document.querySelector(`nav ul li a[data-section="${sectionId}"]`);
     if (activeLink) {
         activeLink.classList.add('active');
     }
 
-    // Если активен раздел Skills, скрываем весь контент по умолчанию
     if (sectionId === 'skills') {
         document.querySelectorAll('.skill-content').forEach(content => {
             content.classList.remove('active');
@@ -30,24 +25,21 @@ function showSection(sectionId) {
     }
 }
 
-// Обработчик кликов по кнопкам навигации
 document.querySelectorAll('nav ul li a').forEach(link => {
     link.addEventListener('click', function (e) {
-        e.preventDefault(); // Отменяем стандартное поведение ссылки
-        const sectionId = this.getAttribute('data-section'); // Получаем ID раздела
-        showSection(sectionId); // Показываем выбранный раздел
+        e.preventDefault(); 
+        const sectionId = this.getAttribute('data-section'); 
+        showSection(sectionId); 
     });
 });
 
-// Обработчик кликов по заголовкам в Skills
 document.querySelectorAll('.skill-header').forEach(header => {
     header.addEventListener('click', function () {
-        const content = this.nextElementSibling; // Находим следующий элемент (контент)
-        content.classList.toggle('active'); // Переключаем видимость контента
+        const content = this.nextElementSibling; 
+        content.classList.toggle('active'); 
     });
 });
 
-// По умолчанию показываем раздел INFO
 showSection('info');
 
 console.clear();
@@ -68,7 +60,7 @@ var smokeImage = new Image();
 smokeImage.src = img;
 
 for (var i1 = 0; i1 < puffs; i1++) {
-    var puffDelay = i1 * 1500; //300 ms between puffs
+    var puffDelay = i1 * 1500; 
 
     for (var i2 = 0; i2 < particlesPerPuff; i2++) {
         addNewParticle((i2 * 50) + puffDelay);
@@ -76,9 +68,9 @@ for (var i1 = 0; i1 < puffs; i1++) {
 }
 
 
-draw(new Date().getTime(), 3000)
-
-
+setInterval(() => {
+    draw(new Date().getTime(), 3000);
+}, 100);  
 
 function addNewParticle(delay) {
 
@@ -99,7 +91,7 @@ function addNewParticle(delay) {
     p.green = Math.floor(randBetween(20, 500));
 
 
-    p.startOpacity = .05 //прозрачность
+    p.startOpacity = .05
     p.newTop = p.top;
     p.newLeft = p.left;
     p.size = 200;
@@ -112,29 +104,29 @@ function addNewParticle(delay) {
 }
 
 function draw(startT, totalT) {
-    //Timing
+    
     var timeDelta = new Date().getTime() - startT;
     var stillAlive = false;
 
-    //Grab and clear the canvas
+  
     var c = document.getElementById("myCanvas");
     var ctx = c.getContext("2d");
     ctx.clearRect(0, 0, c.width, c.height);
     c.width = c.width;
 
-    //Loop through particles
+   
     for (var i = 0; i < pCount; i++) {
-        //Grab the particle
+        
         var p = pCollection[i];
 
-        //Timing
+        
         var td = new Date().getTime() - p.start;
         var frac = td / p.life
 
         if (td > 0) {
             if (td <= p.life) { stillAlive = true; }
 
-            //attributes that change over time
+           
             var newTop = p.top - (p.speedUp * (td / 1000));
             var newLeft = p.left + (p.speedRight * (td / 1000));
             var newOpacity = Math.max(p.startOpacity * (1 - frac), 0);
@@ -143,7 +135,7 @@ function draw(startT, totalT) {
             p.newTop = newTop;
             p.newLeft = newLeft;
 
-            //Draw!
+            
             ctx.fillStyle = 'rgba(20,20,20,' + newOpacity + ')';
             ctx.globalAlpha = newOpacity;
             ctx.drawImage(smokeImage, newLeft, newTop, newSize, newSize);
@@ -152,7 +144,7 @@ function draw(startT, totalT) {
 
 
 
-    //Repeat if there's still a living particle
+   
     if (stillAlive) {
         requestAnimationFrame(function () { draw(startT, totalT); });
     }
@@ -167,7 +159,7 @@ function randBetween(n1, n2) {
 }
 
 function randOffset(n, variance) {
-    //e.g. variance could be 0.1 to go between 0.9 and 1.1
+    
     var max = 1 + variance;
     var min = 1 - variance;
     var r = Math.random() * (max - min) + min;
