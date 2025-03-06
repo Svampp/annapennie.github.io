@@ -50,88 +50,130 @@ document.querySelectorAll('.skill-header').forEach(header => {
 // По умолчанию показываем раздел INFO
 showSection('info');
 
-document.addEventListener('DOMContentLoaded', () => {
-    // Настройки дыма
-    const canvas = document.getElementById('smokeCanvas');
-    if (!canvas) {
-        console.error('Canvas element not found!');
-        return;
+console.clear();
+
+canvasWidth = 1600;
+canvasHeight = 200;
+
+pCount = 0;
+
+
+pCollection = new Array();
+
+var puffs = 1;
+var particlesPerPuff = 2000;
+var img = 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/85280/smoke2.png';
+
+var smokeImage = new Image();
+smokeImage.src = img;
+
+for (var i1 = 0; i1 < puffs; i1++) {
+    var puffDelay = i1 * 1500; //300 ms between puffs
+
+    for (var i2 = 0; i2 < particlesPerPuff; i2++) {
+        addNewParticle((i2 * 50) + puffDelay);
     }
+}
 
-    const ctx = canvas.getContext('2d');
-    canvas.width = window.innerWidth;
-    canvas.height = 200; // Высота области дыма
 
-    const particles = [];
-    const particleCount = 100; // Количество частиц дыма
-    const smokeImage = new Image();
-    smokeImage.src = 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/85280/smoke2.png'; // Изображение дыма
+draw(new Date().getTime(), 3000)
 
-    // Создание частиц дыма
-    function createParticles() {
-        for (let i = 0; i < particleCount; i++) {
-            particles.push({
-                x: Math.random() * canvas.width, // Начальная позиция по X
-                y: canvas.height, // Начальная позиция по Y (нижняя часть)
-                size: Math.random() * 100 + 50, // Размер частицы
-                speedX: Math.random() * 2 - 1, // Скорость по X
-                speedY: Math.random() * -0.5 - 0.5, // Скорость по Y (вверх)
-                opacity: Math.random() * 0.5 + 0.2, // Прозрачность
-                rotation: Math.random() * 360, // Вращение
-                growth: Math.random() * 0.1 + 0.05, // Рост частицы
-            });
+
+
+function addNewParticle(delay) {
+
+    var p = {};
+    p.top = canvasHeight;
+    p.left = randBetween(-200, 800);
+
+    p.start = new Date().getTime() + delay;
+    p.life = 8000;
+    p.speedUp = 30;
+
+
+    p.speedRight = randBetween(0, 20);
+
+    p.rot = randBetween(-1, 1);
+    p.red = Math.floor(randBetween(0, 255));
+    p.blue = Math.floor(randBetween(0, 255));
+    p.green = Math.floor(randBetween(0, 255));
+
+
+    p.startOpacity = .3
+    p.newTop = p.top;
+    p.newLeft = p.left;
+    p.size = 200;
+    p.growth = 10;
+
+    pCollection[pCount] = p;
+    pCount++;
+
+
+}
+
+function draw(startT, totalT) {
+    //Timing
+    var timeDelta = new Date().getTime() - startT;
+    var stillAlive = false;
+
+    //Grab and clear the canvas
+    var c = document.getElementById("myCanvas");
+    var ctx = c.getContext("2d");
+    ctx.clearRect(0, 0, c.width, c.height);
+    c.width = c.width;
+
+    //Loop through particles
+    for (var i = 0; i < pCount; i++) {
+        //Grab the particle
+        var p = pCollection[i];
+
+        //Timing
+        var td = new Date().getTime() - p.start;
+        var frac = td / p.life
+
+        if (td > 0) {
+            if (td <= p.life) { stillAlive = true; }
+
+            //attributes that change over time
+            var newTop = p.top - (p.speedUp * (td / 1000));
+            var newLeft = p.left + (p.speedRight * (td / 1000));
+            var newOpacity = Math.max(p.startOpacity * (1 - frac), 0);
+
+            var newSize = p.size + (p.growth * (td / 1000));
+            p.newTop = newTop;
+            p.newLeft = newLeft;
+
+            //Draw!
+            ctx.fillStyle = 'rgba(150,150,150,' + newOpacity + ')';
+            ctx.globalAlpha = newOpacity;
+            ctx.drawImage(smokeImage, newLeft, newTop, newSize, newSize);
         }
     }
 
-    // Отрисовка дыма
-    function drawSmoke() {
-        ctx.clearRect(0, 0, canvas.width, canvas.height); // Очистка canvas
 
-        particles.forEach((particle, index) => {
-            // Обновление позиции и размера
-            particle.x += particle.speedX;
-            particle.y += particle.speedY;
-            particle.size += particle.growth;
-            particle.opacity -= 0.005; // Постепенное исчезновение
 
-            // Если частица исчезла, заменяем её новой
-            if (particle.opacity <= 0) {
-                particles[index] = {
-                    x: Math.random() * canvas.width,
-                    y: canvas.height,
-                    size: Math.random() * 100 + 50,
-                    speedX: Math.random() * 2 - 1,
-                    speedY: Math.random() * -0.5 - 0.5,
-                    opacity: Math.random() * 0.5 + 0.2,
-                    rotation: Math.random() * 360,
-                    growth: Math.random() * 0.1 + 0.05,
-                };
-            }
-
-            // Отрисовка частицы
-            ctx.save();
-            ctx.globalAlpha = particle.opacity;
-            ctx.translate(particle.x, particle.y);
-            ctx.rotate((particle.rotation * Math.PI) / 180);
-            ctx.drawImage(
-                smokeImage,
-                -particle.size / 2,
-                -particle.size / 2,
-                particle.size,
-                particle.size
-            );
-            ctx.restore();
-        });
-
-        requestAnimationFrame(drawSmoke); // Бесконечная анимация
+    //Repeat if there's still a living particle
+    if (stillAlive) {
+        requestAnimationFrame(function () { draw(startT, totalT); });
     }
+    else {
+        clog(timeDelta + ": stopped");
+    }
+}
 
-    // Запуск эффекта дыма
-    createParticles();
-    drawSmoke();
+function randBetween(n1, n2) {
+    var r = (Math.random() * (n2 - n1)) + n1;
+    return r;
+}
 
-    // Обновление размера canvas при изменении размера окна
-    window.addEventListener('resize', () => {
-        canvas.width = window.innerWidth;
-    });
-});
+function randOffset(n, variance) {
+    //e.g. variance could be 0.1 to go between 0.9 and 1.1
+    var max = 1 + variance;
+    var min = 1 - variance;
+    var r = Math.random() * (max - min) + min;
+    return n * r;
+}
+
+function clog(s) {
+    console.log(s);
+}

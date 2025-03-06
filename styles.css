@@ -180,15 +180,13 @@ a {
         color: #F5DEB3; /* Более светлый оттенок при наведении (например, #F5DEB3) */
     }
 
-/* Стили для canvas */
-#smokeCanvas {
-    position: fixed;
+#myCanvas {
+    height: 200px;
+    width: 1600px;
+    max-width: 99%;
+    min-width: 800px;
+    position: absolute;
     bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 200px; /* Высота области дыма */
-    pointer-events: none; /* Чтобы дым не блокировал клики */
-    z-index: 10; /* Убедитесь, что дым поверх других элементов */
 }
 
 
