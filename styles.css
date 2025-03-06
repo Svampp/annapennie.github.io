@@ -138,7 +138,7 @@ h2 {
     right: 15%; /* Сдвигаем контейнер левее на 15% от правого края */
     width: 20%; /* Увеличиваем ширину контейнера */
     height: auto; /* Высота автоматическая */
-    transform: translateY(-70%); /* Центрируем по вертикали */
+    transform: translateY(-30%); /* Центрируем по вертикали */
     z-index: 1;
     display: flex;
     justify-content: center;
