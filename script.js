@@ -50,27 +50,81 @@ document.querySelectorAll('.skill-header').forEach(header => {
 // По умолчанию показываем раздел INFO
 showSection('info');
 
-// Функция для создания клуба дыма
-function createSmoke() {
-    const smoke = document.createElement('div');
-    smoke.classList.add('smoke');
+// Настройки дыма
+const canvas = document.getElementById('smokeCanvas');
+const ctx = canvas.getContext('2d');
+canvas.width = window.innerWidth;
+canvas.height = 200; // Высота области дыма
 
-    // Случайные начальные параметры для разнообразия
-    const size = Math.random() * 200 + 100; // Размер от 100 до 300px
-    smoke.style.width = `${size}px`;
-    smoke.style.height = `${size}px`;
-    smoke.style.right = `${Math.random() * 100}px`; // Начальная позиция по X
-    smoke.style.bottom = `${Math.random() * 50}px`; // Начальная позиция по Y
-    smoke.style.animationDuration = `${Math.random() * 10 + 5}s`; // Скорость анимации
+const particles = [];
+const particleCount = 100; // Количество частиц дыма
+const smokeImage = new Image();
+smokeImage.src = 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/85280/smoke2.png'; // Изображение дыма
 
-    // Добавляем клуб дыма в контейнер
-    document.querySelector('.smoke-container').appendChild(smoke);
-
-    // Удаляем клуб дыма после завершения анимации
-    smoke.addEventListener('animationend', () => {
-        smoke.remove();
-    });
+// Создание частиц дыма
+function createParticles() {
+    for (let i = 0; i < particleCount; i++) {
+        particles.push({
+            x: Math.random() * canvas.width, // Начальная позиция по X
+            y: canvas.height, // Начальная позиция по Y (нижняя часть)
+            size: Math.random() * 100 + 50, // Размер частицы
+            speedX: Math.random() * 2 - 1, // Скорость по X
+            speedY: Math.random() * -0.5 - 0.5, // Скорость по Y (вверх)
+            opacity: Math.random() * 0.5 + 0.2, // Прозрачность
+            rotation: Math.random() * 360, // Вращение
+            growth: Math.random() * 0.1 + 0.05, // Рост частицы
+        });
+    }
 }
 
-// Создаем клубы дыма каждые 500 мс
-setInterval(createSmoke, 500);
+// Отрисовка дыма
+function drawSmoke() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height); // Очистка canvas
+
+    particles.forEach((particle, index) => {
+        // Обновление позиции и размера
+        particle.x += particle.speedX;
+        particle.y += particle.speedY;
+        particle.size += particle.growth;
+        particle.opacity -= 0.005; // Постепенное исчезновение
+
+        // Если частица исчезла, заменяем её новой
+        if (particle.opacity <= 0) {
+            particles[index] = {
+                x: Math.random() * canvas.width,
+                y: canvas.height,
+                size: Math.random() * 100 + 50,
+                speedX: Math.random() * 2 - 1,
+                speedY: Math.random() * -0.5 - 0.5,
+                opacity: Math.random() * 0.5 + 0.2,
+                rotation: Math.random() * 360,
+                growth: Math.random() * 0.1 + 0.05,
+            };
+        }
+
+        // Отрисовка частицы
+        ctx.save();
+        ctx.globalAlpha = particle.opacity;
+        ctx.translate(particle.x, particle.y);
+        ctx.rotate((particle.rotation * Math.PI) / 180);
+        ctx.drawImage(
+            smokeImage,
+            -particle.size / 2,
+            -particle.size / 2,
+            particle.size,
+            particle.size
+        );
+        ctx.restore();
+    });
+
+    requestAnimationFrame(drawSmoke); // Бесконечная анимация
+}
+
+// Запуск эффекта дыма
+createParticles();
+drawSmoke();
+
+// Обновление размера canvas при изменении размера окна
+window.addEventListener('resize', () => {
+    canvas.width = window.innerWidth;
+});
