@@ -140,12 +140,17 @@ h2 {
     }
 
 .skill-content {
-    display: none; 
-    padding-left: 20px; 
+    max-height: 0;                 
+    overflow: hidden;    
+    padding-left: 20px;
+    opacity: 0;                   
+    transition: max-height 0.5s ease, opacity 0.5s ease, padding 0.5s ease;
 }
 
     .skill-content.active {
-        display: block; 
+       max-height: 500px;             
+    opacity: 1;                    
+    padding-left: 20px; 
     }
 
 #image-container {
