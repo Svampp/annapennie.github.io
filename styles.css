@@ -1,33 +1,33 @@
-/* Общие стили */
 body {
+    position: relative;
+    min-height: 100vh;
     font-family: 'Cinzel', serif;
     background-image: url('background.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    color: #B8860B; /* Цвет текста по умолчанию */
+    color: #B8860B; 
     margin: 0;
     padding: 0;
     line-height: 1.6;
-    min-height: 100vh; /* Чтобы футер был внизу */
+    min-height: 100vh; 
     display: flex;
     flex-direction: column;
-    scrollbar-width: thin; /* Тонкая полоса прокрутки */
-    scrollbar-color: #B8860B transparent; /* Цвет полосы и фона */
+    scrollbar-width: thin; 
+    scrollbar-color: #B8860B transparent; 
 }
 
-    /* Стилизация полосы прокрутки для WebKit (Chrome, Safari) */
     body::-webkit-scrollbar {
-        width: 8px; /* Ширина полосы прокрутки */
+        width: 8px; 
     }
 
     body::-webkit-scrollbar-track {
-        background: transparent; /* Прозрачный фон трека */
+        background: transparent; 
     }
 
     body::-webkit-scrollbar-thumb {
-        background: linear-gradient( to bottom, transparent 10%, #B8860B 50%, transparent 90% ); /* Градиентная полоса */
-        border-radius: 4px; /* Скругление углов */
+        background: linear-gradient( to bottom, transparent 10%, #B8860B 50%, transparent 90% ); 
+        border-radius: 4px; 
     }
 
     body::before {
@@ -42,9 +42,9 @@ body {
     }
 
 header {
-    background-color: rgba(51, 51, 51, 0.2); /* Полупрозрачный фон */
+    background-color: rgba(51, 51, 51, 0.2); 
     padding: 10px 0;
-    border-bottom: none; /* Убираем линию */
+    border-bottom: none; 
 }
 
 nav ul {
@@ -60,7 +60,7 @@ nav ul {
     }
 
         nav ul li a {
-            color: rgba(245, 222, 179, 0.5); /* Серый текст (полупрозрачный #F5DEB3) */
+            color: rgba(245, 222, 179, 0.5); 
             text-decoration: none;
             font-weight: bold;
             font-size: 18px;
@@ -70,91 +70,91 @@ nav ul {
 
 @keyframes blink {
     0% {
-        background-size: 100% 2px; /* Исходное состояние */
+        background-size: 100% 2px; 
     }
 
     50% {
-        background-size: 150% 2px; /* Немного растягиваем полосу */
+        background-size: 150% 2px; 
     }
 
     100% {
-        background-size: 100% 2px; /* Возвращаемся к исходному состоянию */
+        background-size: 100% 2px; 
     }
 }
 
 nav ul li a.active {
-    color: #F5DEB3; /* Цвет текста для активной кнопки */
-    border-bottom: 2px solid transparent; /* Убираем стандартную полосу */
-    background-image: linear-gradient( to right, transparent 10%, /* Уменьшаем прозрачную область */
-    #B8860B 50%, /* Золотой цвет */
-    transparent 90% /* Уменьшаем прозрачную область */
+    color: #F5DEB3; 
+    border-bottom: 2px solid transparent; 
+    background-image: linear-gradient( to right, transparent 10%, 
+    #B8860B 50%, 
+    transparent 90% 
     );
-    background-size: 100% 2px; /* Высота полосы */
+    background-size: 100% 2px; 
     background-position: bottom;
     background-repeat: no-repeat;
-    padding-bottom: 5px; /* Отступ для подчеркивания */
-    animation: blink 1.5s infinite; /* Применяем анимацию */
+    padding-bottom: 5px; 
+    animation: blink 1.5s infinite; 
 }
 
 main {
     padding: 20px;
-    flex: 1; /* Чтобы футер был внизу */
+    flex: 1; 
 }
 
 section {
     margin-bottom: 40px;
     padding: 20px;
     border-radius: 8px;
-    box-shadow: none; /* Тонкая обводка цвета #B8860B */
-    max-width: 50%; /* Ограничиваем ширину */
-    margin-left: 0; /* Выравниваем по левому краю */
-    background-color: rgba(42, 42, 42, 0.2); /* Полупрозрачный фон */
+    box-shadow: none; 
+    max-width: 50%; 
+    margin-left: 0; 
+    background-color: rgba(42, 42, 42, 0.2); 
 }
 
     section p {
-        font-size: 25px; /* Увеличиваем размер текста */
-        margin: 10px 0; /* Добавляем отступы между абзацами */
-        color: #F5DEB3; /* Цвет текста */
+        font-size: 25px; 
+        margin: 10px 0; 
+        color: #F5DEB3; 
     }
 
 h2 {
-    color: #B8860B; /* Цвет заголовка */
-    border-bottom: none; /* Убираем полосу */
-    text-align: left; /* Выравниваем по левому краю */
-    padding-left: 20px; /* Отступ слева */
+    color: #B8860B; 
+    border-bottom: none; 
+    text-align: left; 
+    padding-left: 20px; 
 }
 
 .skill-header {
-    background-color: rgba(42, 42, 42, 0.2); /* Полупрозрачный фон для заголовков */
-    padding: 10px 20px; /* Отступы внутри заголовка */
-    border-radius: 8px; /* Скругление углов */
-    margin-bottom: 10px; /* Отступ между заголовками */
-    cursor: pointer; /* Курсор в виде указателя */
-    transition: background-color 0.3s ease, box-shadow 0.3s ease; /* Плавное изменение фона и тени */
+    background-color: rgba(42, 42, 42, 0.2); 
+    padding: 10px 20px; 
+    border-radius: 8px; 
+    margin-bottom: 10px; 
+    cursor: pointer; 
+    transition: background-color 0.3s ease, box-shadow 0.3s ease; 
     
 }
 
     .skill-header:hover {
-        background-color: rgba(66, 66, 66, 0.4); /* Подсветка при наведении */
+        background-color: rgba(66, 66, 66, 0.4); 
         box-shadow: 0 0 10px rgba(184, 134, 11, 0.5);
     }
 
 .skill-content {
-    display: none; /* По умолчанию скрываем контент */
-    padding-left: 20px; /* Отступ для вложенного текста */
+    display: none; 
+    padding-left: 20px; 
 }
 
     .skill-content.active {
-        display: block; /* Показываем контент при активации */
+        display: block; 
     }
 
 #image-container {
     position: fixed;
-    top: 50%; /* Смещаем контейнер на 50% от верха */
-    right: 7%; /* Сдвигаем контейнер левее на 15% от правого края */
-    width: 25%; /* Увеличиваем ширину контейнера */
-    height: auto; /* Высота автоматическая */
-    transform: translateY(-30%); /* Центрируем по вертикали */
+    top: 50%; 
+    right: 7%; 
+    width: 25%; 
+    height: auto; 
+    transform: translateY(-30%); 
     z-index: 1;
     display: flex;
     justify-content: center;
@@ -162,32 +162,31 @@ h2 {
 }
 
     #image-container img {
-        width: 85%; /* Ширина изображения */
-        height: auto; /* Сохраняем пропорции */
+        width: 85%; 
+        height: auto; 
         object-fit: contain;
         max-width: 100%;
         max-height: 100%;
-        filter: brightness(55%); /* Затемняем картинку до 70% яркости */
+        filter: brightness(55%); 
     }
 
 a {
-    color: #B8860B; /* Устанавливаем золотой цвет для ссылок */
-    text-decoration: none; /* Убираем подчеркивание */
-    transition: color 0.3s ease; /* Плавное изменение цвета при наведении */
+    color: #B8860B; 
+    text-decoration: none; 
+    transition: color 0.3s ease; 
 }
 
     a:hover {
-        color: #F5DEB3; /* Более светлый оттенок при наведении (например, #F5DEB3) */
+        color: #F5DEB3; 
     }
 
 #myCanvas {
-    height: 200px;
-    width: 1600px;
-    max-width: 99%;
-    min-width: 800px;
-    position: absolute;
-    bottom: 0;
-    z-index: 2;
+    position: absolute;      
+    bottom: 0;               
+    left: 0;
+    width: 100%;
+    z-index: 2;              
+    pointer-events: none; 
 }
 
 
