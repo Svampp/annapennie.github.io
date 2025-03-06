@@ -72,9 +72,13 @@ for (var i1 = 0; i1 < puffs; i1++) {
 }
 
 
-setInterval(() => {
+function animateSmoke() {
     draw(new Date().getTime(), 3000);
-}, 100);  
+    requestAnimationFrame(animateSmoke);
+}
+
+animateSmoke();  
+
 
 function addNewParticle(delay) {
 
