@@ -68,18 +68,33 @@ nav ul {
             position: relative;
         }
 
-            nav ul li a.active {
-                color: #F5DEB3; /* Цвет текста для активной кнопки */
-                border-bottom: 2px solid transparent; /* Убираем стандартную полосу */
-                background-image: linear-gradient( to right, transparent 10%, /* Уменьшаем прозрачную область */
-                #B8860B 50%, /* Золотой цвет */
-                transparent 90% /* Уменьшаем прозрачную область */
-                );
-                background-size: 100% 2px; /* Высота полосы */
-                background-position: bottom;
-                background-repeat: no-repeat;
-                padding-bottom: 5px; /* Отступ для подчеркивания */
-            }
+@keyframes blink {
+    0% {
+        background-size: 100% 2px; /* Исходное состояние */
+    }
+
+    50% {
+        background-size: 110% 2px; /* Немного растягиваем полосу */
+    }
+
+    100% {
+        background-size: 100% 2px; /* Возвращаемся к исходному состоянию */
+    }
+}
+
+nav ul li a.active {
+    color: #F5DEB3; /* Цвет текста для активной кнопки */
+    border-bottom: 2px solid transparent; /* Убираем стандартную полосу */
+    background-image: linear-gradient( to right, transparent 10%, /* Уменьшаем прозрачную область */
+    #B8860B 50%, /* Золотой цвет */
+    transparent 90% /* Уменьшаем прозрачную область */
+    );
+    background-size: 100% 2px; /* Высота полосы */
+    background-position: bottom;
+    background-repeat: no-repeat;
+    padding-bottom: 5px; /* Отступ для подчеркивания */
+    animation: blink 1.5s infinite; /* Применяем анимацию */
+}
 
 main {
     padding: 20px;
