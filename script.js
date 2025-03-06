@@ -26,12 +26,16 @@ function showSection(sectionId) {
 }
 
 document.querySelectorAll('nav ul li a').forEach(link => {
-    link.addEventListener('click', function (e) {
-        e.preventDefault(); 
-        const sectionId = this.getAttribute('data-section'); 
-        showSection(sectionId); 
-    });
+    link.removeEventListener('click', handleLinkClick); 
+    link.addEventListener('click', handleLinkClick);     
 });
+
+function handleLinkClick(e) {
+    e.preventDefault();
+    const sectionId = this.getAttribute('data-section');
+    showSection(sectionId);
+}
+
 
 document.querySelectorAll('.skill-header').forEach(header => {
     header.addEventListener('click', function () {
