@@ -144,7 +144,7 @@ function draw(startT, totalT) {
             p.newLeft = newLeft;
 
             //Draw!
-            ctx.fillStyle = 'rgba(150,150,150,' + newOpacity + ')';
+            ctx.fillStyle = 'rgba(50,50,50,' + newOpacity + ')';
             ctx.globalAlpha = newOpacity;
             ctx.drawImage(smokeImage, newLeft, newTop, newSize, newSize);
         }
