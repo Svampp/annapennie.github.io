@@ -49,3 +49,28 @@ document.querySelectorAll('.skill-header').forEach(header => {
 
 // По умолчанию показываем раздел INFO
 showSection('info');
+
+// Функция для создания клуба дыма
+function createSmoke() {
+    const smoke = document.createElement('div');
+    smoke.classList.add('smoke');
+
+    // Случайные начальные параметры для разнообразия
+    const size = Math.random() * 100 + 50; // Размер от 50 до 150px
+    smoke.style.width = `${size}px`;
+    smoke.style.height = `${size}px`;
+    smoke.style.right = `${Math.random() * 100}px`; // Начальная позиция по X
+    smoke.style.bottom = `${Math.random() * 50}px`; // Начальная позиция по Y
+    smoke.style.animationDuration = `${Math.random() * 10 + 5}s`; // Скорость анимации
+
+    // Добавляем клуб дыма в контейнер
+    document.getElementById('smoke-container').appendChild(smoke);
+
+    // Удаляем клуб дыма после завершения анимации
+    smoke.addEventListener('animationend', () => {
+        smoke.remove();
+    });
+}
+
+// Создаем клубы дыма каждые 500 мс
+setInterval(createSmoke, 500);
