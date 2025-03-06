@@ -94,12 +94,12 @@ function addNewParticle(delay) {
     p.speedRight = randBetween(0, 20);
 
     p.rot = randBetween(-1, 1);
-    p.red = Math.floor(randBetween(0, 255));
-    p.blue = Math.floor(randBetween(0, 255));
-    p.green = Math.floor(randBetween(0, 255));
+    p.red = Math.floor(randBetween(50, 100));
+    p.blue = Math.floor(randBetween(50, 100));
+    p.green = Math.floor(randBetween(50, 100));
 
 
-    p.startOpacity = .3
+    p.startOpacity = .15 //прозрачность
     p.newTop = p.top;
     p.newLeft = p.left;
     p.size = 200;
