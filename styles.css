@@ -180,51 +180,7 @@ a {
         color: #F5DEB3; /* Более светлый оттенок при наведении (например, #F5DEB3) */
     }
 
-/* Стили для контейнера дыма */
-#smoke-container {
-    position: fixed;
-    bottom: 0;
-    right: 0;
-    width: 100%;
-    height: 150px; /* Высота области дыма */
-    pointer-events: none; /* Чтобы дым не блокировал клики */
-    z-index: 10; /* Убедитесь, что дым поверх других элементов */
-    overflow: hidden;
-}
 
-/* Стили для отдельных клубов дыма */
-.smoke {
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    width: 100px; /* Начальная ширина клуба дыма */
-    height: 100px; /* Начальная высота клуба дыма */
-    background: radial-gradient( circle, rgba(255, 255, 255, 0.3) 10%, /* Прозрачный центр */
-    rgba(255, 255, 255, 0.1) 50%, /* Полупрозрачный край */
-    rgba(255, 255, 255, 0) 100% /* Полностью прозрачный */
-    );
-    filter: blur(20px); /* Размытие для эффекта дыма */
-    border-radius: 50%; /* Форма клуба дыма */
-    animation: smokeFlow 10s linear infinite; /* Анимация потока дыма */
-}
-
-/* Ключевые кадры для анимации потока дыма */
-@keyframes smokeFlow {
-    0% {
-        transform: translateX(0) translateY(0) scale(1);
-        opacity: 0.8;
-    }
-
-    50% {
-        transform: translateX(-100px) translateY(-20px) scale(1.5);
-        opacity: 0.6;
-    }
-
-    100% {
-        transform: translateX(-200px) translateY(0) scale(1);
-        opacity: 0;
-    }
-}
 
 
 
