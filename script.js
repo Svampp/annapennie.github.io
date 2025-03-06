@@ -94,12 +94,12 @@ function addNewParticle(delay) {
     p.speedRight = randBetween(0, 20);
 
     p.rot = randBetween(-1, 1);
-    p.red = Math.floor(randBetween(50, 100));
-    p.blue = Math.floor(randBetween(50, 100));
-    p.green = Math.floor(randBetween(50, 100));
+    p.red = Math.floor(randBetween(20, 50));
+    p.blue = Math.floor(randBetween(20, 50));
+    p.green = Math.floor(randBetween(20, 500));
 
 
-    p.startOpacity = .15 //прозрачность
+    p.startOpacity = .05 //прозрачность
     p.newTop = p.top;
     p.newLeft = p.left;
     p.size = 200;
@@ -144,7 +144,7 @@ function draw(startT, totalT) {
             p.newLeft = newLeft;
 
             //Draw!
-            ctx.fillStyle = 'rgba(50,50,50,' + newOpacity + ')';
+            ctx.fillStyle = 'rgba(20,20,20,' + newOpacity + ')';
             ctx.globalAlpha = newOpacity;
             ctx.drawImage(smokeImage, newLeft, newTop, newSize, newSize);
         }
