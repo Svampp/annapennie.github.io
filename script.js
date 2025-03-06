@@ -48,16 +48,12 @@ function handleLinkClick(e) {
     showSection(sectionId);
 }
 
-// Обработчики для скилов с удалением старых
+// Обработчики для скилов без клонирования элементов
 document.querySelectorAll('.skill-header').forEach(header => {
-    const newHandler = function () {
+    header.addEventListener('click', function () {
         const content = this.nextElementSibling;
         content.classList.toggle('active');
-    };
-
-    header.replaceWith(header.cloneNode(true));
-    header = document.querySelector('.skill-header');
-    header.addEventListener('click', newHandler);
+    });
 });
 
 showSection('info');
