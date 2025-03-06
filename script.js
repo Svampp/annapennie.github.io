@@ -10,8 +10,7 @@ function showSection(sectionId) {
     }
 
     document.querySelectorAll('nav ul li a').forEach(link => {
-        link.removeEventListener('click', handleLinkClick);
-        link.addEventListener('click', handleLinkClick);
+         link.classList.remove('active');
     });
 
     const activeLink = document.querySelector(`nav ul li a[data-section="${sectionId}"]`);
