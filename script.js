@@ -1,17 +1,14 @@
-// Ограничение для частиц
-let maxParticles = 500;  // Лимит частиц
+let maxParticles = 500;  
 let particleInterval = null;
 let canvasWidth = 1600;
 let canvasHeight = 200;
 let pCollection = [];
 let pCount = 0;
 
-// Установка изображения дыма
 let img = 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/85280/smoke2.png';
 let smokeImage = new Image();
 smokeImage.src = img;
 
-// Функция для переключения секций
 function showSection(sectionId) {
     document.querySelectorAll('.content-section').forEach(section => {
         section.style.display = 'none';
@@ -48,7 +45,6 @@ function handleLinkClick(e) {
     showSection(sectionId);
 }
 
-// Обработчики для скилов без клонирования элементов
 document.querySelectorAll('.skill-header').forEach(header => {
     header.addEventListener('click', function () {
         const content = this.nextElementSibling;
@@ -58,7 +54,6 @@ document.querySelectorAll('.skill-header').forEach(header => {
 
 showSection('info');
 
-// Добавление новых частиц с ограничением
 function addNewParticle(delay) {
     if (pCount >= maxParticles) return;
 
@@ -70,7 +65,7 @@ function addNewParticle(delay) {
         speedUp: 30,
         speedRight: randBetween(0, 20),
         rot: randBetween(-1, 1),
-        startOpacity: .05,
+        startOpacity: .02,
         size: 200,
         growth: 10,
         newTop: canvasHeight,
@@ -81,7 +76,6 @@ function addNewParticle(delay) {
     pCount = pCollection.length;
 }
 
-// Добавление частиц с интервалом и ограничением
 particleInterval = setInterval(() => {
     if (pCount < maxParticles) {
         for (let i = 0; i < 10; i++) {
@@ -92,7 +86,6 @@ particleInterval = setInterval(() => {
     }
 }, 200);
 
-// Функция анимации дыма
 function animateSmoke() {
     draw(new Date().getTime(), 3000);
     requestAnimationFrame(animateSmoke);
@@ -100,14 +93,13 @@ function animateSmoke() {
 
 animateSmoke();
 
-// Функция отрисовки дыма
 function draw(startT, totalT) {
     let timeDelta = new Date().getTime() - startT;
     let stillAlive = false;
 
     let c = document.getElementById("myCanvas");
     let ctx = c.getContext("2d");
-    ctx.clearRect(0, 0, c.width, c.height);  // Чистим холст
+    ctx.clearRect(0, 0, c.width, c.height); 
 
     for (let i = 0; i < pCollection.length; i++) {
         let p = pCollection[i];
@@ -132,6 +124,7 @@ function draw(startT, totalT) {
             p.newTop = newTop;
             p.newLeft = newLeft;
 
+            ctx.fillStyle = 'rgba(128, 128, 128,' + newOpacity + ')';
             ctx.globalAlpha = newOpacity;
             ctx.drawImage(smokeImage, newLeft, newTop, newSize, newSize);
         }
@@ -143,7 +136,6 @@ function draw(startT, totalT) {
     }
 }
 
-// Вспомогательные функции
 function randBetween(n1, n2) {
     return (Math.random() * (n2 - n1)) + n1;
 }
