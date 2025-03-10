@@ -9,6 +9,15 @@ let img = 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/85280/smoke2.png';
 let smokeImage = new Image();
 smokeImage.src = img;
 
+function isMobileDevice() {
+    return (typeof window.orientation !== "undefined") || (navigator.userAgent.indexOf('IEMobile') !== -1);
+}
+
+window.onload = function () {
+    if (isMobileDevice()) {
+        document.getElementById('mobile-message').style.display = 'flex';
+    }
+};
 function showSection(sectionId) {
     document.querySelectorAll('.content-section').forEach(section => {
         section.style.display = 'none';
